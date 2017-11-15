@@ -2,7 +2,7 @@
 <project name="build_deploy" default="deploy">
   <!-- McCabe property -->
   <!-- added part.0 start-->
-  <property name="mccabe.helper.dir" value="/svn/mccabe/test/mccabe"/>
+  <property name="mccabe.helper.dir" value="/svn/mccabe"/>
   <property file="${mccabe.helper.dir}/mcBin/mccabe.properties" />
   <!-- added part.0 end-->
   <!-- project properties -->
