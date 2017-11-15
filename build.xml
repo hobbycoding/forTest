@@ -2,7 +2,8 @@
 <project name="build_deploy" default="deploy">
   <!-- McCabe property -->
   <!-- added part.0 start-->
-  <property file="/svn/mccabe/test/mccabe/mcBin/mccabe.properties" />
+  <property name="mccabe.helper.dir" value="/svn/mccabe/test/mccabe/mcBin"/>
+  <property file="${mccabe.helper.dir}/mccabe.properties" />
   <!-- added part.0 end-->
   <!-- project properties -->
   <!-- Source (hudson workspace) -->
@@ -81,21 +82,21 @@
   </target>
 
   <target name="mccabe.build.inst">
-      <java jar="${WORK_HOME}/mcBin/mccabe_exec.jar" fork="true">
-          <arg line="${WORK_HOME}/mcBin/mccabe.properties inst"/>
+      <java jar="${mccabe.helper.dir}/mcBin/mccabe_exec.jar" fork="true">
+          <arg line="${mccabe.helper.dir}/mcBin/mccabe.properties inst"/>
       </java>
       <antcall target="mccabe.fix.pathvec"/>
   </target>
 
   <target name="mccabe.fix.pathvec">
-    <java jar="/svn/mccabe/test/mccabe/mcBin/mccabe_exec.jar" fork="true">
-      <arg line="/svn/mccabe/test/mccabe/mcBin/mccabe.properties pathvec"/>
+    <java jar="${mccabe.helper.dir}/mccabe_exec.jar" fork="true">
+      <arg line="${mccabe.helper.dir}/mccabe.properties pathvec"/>
     </java>
   </target>
   <!-- added part.2 end-->
   <!-- 2.compile 및 배포 -->
   <target name="compile">
-    <javac srcdir="/svn/mccabe/test/projects/test/src" destdir="/svn/mccabe/test/projects/test/web/WEB-INF/classes" source="1.8" target="1.8" failonerror="false" includeantruntime="false" encoding="utf8" debug="on">
+    <javac srcdir="${WORK_HOME}/projects/test/src" destdir="${WORK_HOME}/projects/test/web/WEB-INF/classes" source="1.8" target="1.8" failonerror="false" includeantruntime="false" encoding="utf8" debug="on">
       <compilerarg compiler="org.eclipse.jdt.core.JDTCompilerAdapter" line="-g -proceedOnError -time -warn:none -Xemacs -Xlint:unchecked" />
       <classpath>
         <pathelement path="${repository.app.sfa}/web/WEB-INF/classes" />
@@ -111,9 +112,6 @@
         <fileset dir="${jeus.datasource.lib.dir}">
           <include name="*.jar" />
         </fileset>
-        <fileset dir="/svn/mccabe/test/mccabe/mcBin">
-          <include name="*.jar" />
-        </fileset>
       </classpath>
     </javac>
   </target>
@@ -121,7 +119,7 @@
   <target name="app.sfa.deploy">
     <echo message="[ app.sfa.deploy Start ]" />
     <scp todir="${target.sfa.ap.svr.user}:${target.sfa.ap.svr.pw}@${target.sfa.ap.svr.ip}:${target.app.sfa.root}" verbose="true" trust="true">
-      <fileset dir="/svn/mccabe/test/projects/test/">
+      <fileset dir="${WORK_HOME}/projects/test/">
         <exclude name="**/*.java" />
         <include name="**/*.class" />
         <!--<include name="**/*.jsp" />-->
