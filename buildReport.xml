@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<project name="makeReport" default="mccabe.download">
+    <property file="/svn/mccabe/test/mccabe/mcBin/mccabe.properties"/>
+
+    <target name="mccabe.download">
+        <java jar="/svn/mccabe/test/mccabe/mcBin/mccabe_exec.jar" fork="true">
+            <arg line="/svn/mccabe/test/mccabe/mcBin/mccabe.properties sftp"/>
+        </java>
+    </target>
+
+    <target name="mccabe.build.report">
+        <java jar="/svn/mccabe/test/mccabe/mcBin/mccabe_exec.jar" fork="true">
+            <arg line="/svn/mccabe/test/mccabe/mcBin/mccabe.properties report"/>
+        </java>
+        <antcall target="mccabe.addedPackageName"/>
+    </target>
+
+    <target name="mccabe.addedPackageName">
+        <java jar="/svn/mccabe/test/mccabe/mcBin/mccabe_exec.jar" fork="true">
+            <arg line="/svn/mccabe/test/mccabe/mcBin/mccabe.properties PackageAdd"/>
+        </java>
+    </target>
+</project>
