@@ -75,6 +75,7 @@
 
   <!-- added part.2 start-->
   <target name="mccabe.ant.copy">
+      <mkdir dir="${WORK_HOME}"/>
       <mkdir dir="${WORK_HOME}/build"/>
       <copy todir="${WORK_HOME}/build" verbose="yes">
           <fileset dir="${build.temp.dir}"/>
