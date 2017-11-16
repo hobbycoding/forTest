@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="euc-kr"?>
 <project name="makeReport" default="mccabe.download">
-    <property file="/svn/mccabe/test/mccabe/mcBin/mccabe.properties"/>
+    <property name="mccabe.helper.jar" value="/usr/mccabe/helper/MccabeHelper-1.0.jar"/>
+    <property name="mccabe.property" value="/usr/mccabe/helper/mccabe.properties" />
+    <property file="${mccabe.property}" />
 
     <target name="mccabe.download">
-        <java jar="/svn/mccabe/test/mccabe/mcBin/mccabe_exec.jar" fork="true">
-            <arg line="/svn/mccabe/test/mccabe/mcBin/mccabe.properties sftp"/>
+        <java jar="${mccabe.helper.jar}" fork="true">
+            <arg line="${mccabe.property} sftp"/>
         </java>
     </target>
 
     <target name="mccabe.build.report">
-        <java jar="/svn/mccabe/test/mccabe/mcBin/mccabe_exec.jar" fork="true">
-            <arg line="/svn/mccabe/test/mccabe/mcBin/mccabe.properties report"/>
+        <java jar="${mccabe.helper.jar}" fork="true">
+            <arg line="${mccabe.property} report"/>
         </java>
         <antcall target="mccabe.addedPackageName"/>
     </target>
 
     <target name="mccabe.addedPackageName">
-        <java jar="/svn/mccabe/test/mccabe/mcBin/mccabe_exec.jar" fork="true">
-            <arg line="/svn/mccabe/test/mccabe/mcBin/mccabe.properties PackageAdd"/>
+        <java jar="${mccabe.helper.jar}" fork="true">
+            <arg line="${mccabe.property} PackageAdd"/>
         </java>
     </target>
 </project>
