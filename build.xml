@@ -84,6 +84,7 @@
   </target>
 
   <target name="mccabe.build.inst">
+      <echo message="${mccabe.helper.jar} inst"/>
       <java jar="${mccabe.helper.jar}" fork="true">
           <arg line="${mccabe.property} inst"/>
       </java>
