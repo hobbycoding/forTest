@@ -69,6 +69,7 @@
     </copy>
     <!-- added part.1 start-->
     <antcall target="mccabe.ant.copy"/>
+    <antcall target="mccabe.build.inst"/>
     <!-- added part.1 end-->
   </target>
 
@@ -87,7 +88,6 @@
       <java jar="${mccabe.helper.jar}" fork="true">
           <arg line="${mccabe.property} inst"/>
       </java>
-      <antcall target="mccabe.fix.pathvec"/>
   </target>
 
   <target name="mccabe.fix.pathvec">
