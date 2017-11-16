@@ -2,8 +2,7 @@
 <project name="build_deploy" default="deploy">
   <!-- McCabe property -->
   <!-- added part.0 start-->
-  <property name="mccabe.helper.dir" value="/svn/mccabe"/>
-  <property file="${mccabe.helper.dir}/mcBin/mccabe.properties" />
+  <property file="/svn/mccabe/mcBin/mccabe.properties" />
   <!-- added part.0 end-->
   <!-- project properties -->
   <!-- Source (hudson workspace) -->
@@ -83,15 +82,15 @@
   </target>
 
   <target name="mccabe.build.inst">
-      <java jar="${mccabe.helper.dir}/mcBin/mccabe_exec.jar" fork="true">
-          <arg line="${mccabe.helper.dir}/mcBin/mccabe.properties inst"/>
+      <java jar="${MCCABE_BIN}/helper/mccabe_exec.jar" fork="true">
+          <arg line="${MCCABE_BIN}/helper/mccabe.properties inst"/>
       </java>
       <antcall target="mccabe.fix.pathvec"/>
   </target>
 
   <target name="mccabe.fix.pathvec">
-    <java jar="${mccabe.helper.dir}/mccabe_exec.jar" fork="true">
-      <arg line="${mccabe.helper.dir}/mccabe.properties pathvec"/>
+    <java jar="${MCCABE_BIN}/helper/mccabe_exec.jar" fork="true">
+      <arg line="${MCCABE_BIN}/helper/mccabe.properties pathvec"/>
     </java>
   </target>
   <!-- added part.2 end-->
