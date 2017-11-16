@@ -69,7 +69,6 @@
     </copy>
     <!-- added part.1 start-->
     <antcall target="mccabe.ant.copy"/>
-    <antcall target="mccabe.build.inst"/>
     <!-- added part.1 end-->
   </target>
 
