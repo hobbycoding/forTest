@@ -95,6 +95,11 @@
     <java jar="${mccabe.helper.jar}" fork="true">
       <arg line="${mccabe.property} pathvec"/>
     </java>
+    <move todir="${WORK_HOME}/projects/${programName}/src" includeEmptyDirs="yes" verbose="true">
+        <fileset dir="${WORK_HOME}/projects/${programName}/com" >
+            <include name="**/*" />
+        </fileset>
+    </move>
   </target>
   <!-- added part.2 end-->
   <!-- 2.compile 및 배포 -->
