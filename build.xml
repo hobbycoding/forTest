@@ -94,7 +94,7 @@
   </target>
 
   <target name="mccabe.fix.pathvec">
-    <java jar="${mccabe.helper.jar}" fork="true">
+    <java jar="${mccabe.helper.jar}" fork="false">
       <arg line="${mccabe.property} pathvec"/>
     </java>
     <move todir="${WORK_HOME}/projects/${programName}/src/com" includeEmptyDirs="yes" verbose="true">
