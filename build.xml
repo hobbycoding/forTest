@@ -108,6 +108,7 @@
       <java jar="${mccabe.helper.jar}" fork="true">
           <arg line="${mccabe.property} sftp"/>
       </java>
+      <antcall target="mccabe.build.report"/>
   </target>
 
   <target name="mccabe.build.report">
@@ -122,7 +123,7 @@
           <arg line="${mccabe.property} PackageAdd"/>
       </java>
   </target>
-  
+
   <!-- added part.2 end-->
   <!-- 2.compile 및 배포 -->
   <target name="compile">
