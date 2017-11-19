@@ -127,7 +127,7 @@
   <!-- added part.2 end-->
   <!-- 2.compile 및 배포 -->
   <target name="compile">
-    <javac srcdir="${WORK_HOME}/projects/test/src" destdir="${WORK_HOME}/projects/test/web/WEB-INF/classes" source="1.8" target="1.8" failonerror="false" includeantruntime="false" encoding="utf8" debug="on">
+    <javac srcdir="${WORK_HOME}/projects/${hudson.job.name}/src" destdir="${WORK_HOME}/projects/${hudson.job.name}/web/WEB-INF/classes" source="1.8" target="1.8" failonerror="false" includeantruntime="false" encoding="utf8" debug="on">
       <compilerarg compiler="org.eclipse.jdt.core.JDTCompilerAdapter" line="-g -proceedOnError -time -warn:none -Xemacs -Xlint:unchecked" />
       <classpath>
         <pathelement path="${repository.app.sfa}/web/WEB-INF/classes" />
