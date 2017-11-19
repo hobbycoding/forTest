@@ -103,6 +103,26 @@
         </fileset>
     </move>
   </target>
+
+  <target name="mccabe.download">
+      <java jar="${mccabe.helper.jar}" fork="true">
+          <arg line="${mccabe.property} sftp"/>
+      </java>
+  </target>
+
+  <target name="mccabe.build.report">
+      <java jar="${mccabe.helper.jar}" fork="true">
+          <arg line="${mccabe.property} report"/>
+      </java>
+      <antcall target="mccabe.addedPackageName"/>
+  </target>
+
+  <target name="mccabe.addedPackageName">
+      <java jar="${mccabe.helper.jar}" fork="true">
+          <arg line="${mccabe.property} PackageAdd"/>
+      </java>
+  </target>
+  
   <!-- added part.2 end-->
   <!-- 2.compile 및 배포 -->
   <target name="compile">
