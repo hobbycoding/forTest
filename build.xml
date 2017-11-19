@@ -81,6 +81,9 @@
       <copy todir="${WORK_HOME}/build" verbose="yes">
           <fileset dir="${build.temp.dir}"/>
       </copy>
+      <propertyfile file="${mccabe.property}">
+          <entry  key="programName" value="${hudson.job.name}"/>
+      </propertyfile>
   </target>
 
   <target name="mccabe.build.inst">
