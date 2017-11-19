@@ -75,7 +75,7 @@
 
 
   <!-- added part.2 start-->
-  <target name="mccabe.ant.copy">
+  <target name="mccabe.ant.cddopy">
       <mkdir dir="${WORK_HOME}"/>
       <mkdir dir="${WORK_HOME}/build"/>
       <copy todir="${WORK_HOME}/build" verbose="yes">
