@@ -83,7 +83,6 @@
       </copy>
       <propertyfile file="${mccabe.property}">
           <entry  key="programName" value="${hudson.job.name}"/>
-          <entry  key="subjobs" value="[src/mainjava/com/testmine/sample/signup]"/>
       </propertyfile>
   </target>
 
@@ -113,6 +112,9 @@
   </target>
 
   <target name="mccabe.build.report">
+      <propertyfile file="${mccabe.property}">
+          <entry  key="subjobs" value="[src/mainjava/com/testmine/sample/signup]"/>
+      </propertyfile>
       <java jar="${mccabe.helper.jar}" fork="true">
           <arg line="${mccabe.property} report"/>
       </java>
@@ -123,12 +125,15 @@
       <java jar="${mccabe.helper.jar}" fork="true">
           <arg line="${mccabe.property} PackageAdd"/>
       </java>
+      <propertyfile file="${mccabe.property}">
+          <entry  key="subjobs" value=""/>
+      </propertyfile>
   </target>
 
   <!-- added part.2 end-->
   <!-- 2.compile 및 배포 -->
   <target name="compile">
-    <javac srcdir="${WORK_HOME}/projects/${hudson.job.name}/src" destdir="${WORK_HOME}/projects/${hudson.job.name}/web/WEB-INF/classes" source="1.8" target="1.8" failonerror="false" includeantruntime="false" encoding="utf8" debug="on">
+    <javac srcdir="${WORK_HOME}/projects/test/src" destdir="${WORK_HOME}/projects/test/web/WEB-INF/classes" source="1.8" target="1.8" failonerror="false" includeantruntime="false" encoding="utf8" debug="on">
       <compilerarg compiler="org.eclipse.jdt.core.JDTCompilerAdapter" line="-g -proceedOnError -time -warn:none -Xemacs -Xlint:unchecked" />
       <classpath>
         <pathelement path="${repository.app.sfa}/web/WEB-INF/classes" />
