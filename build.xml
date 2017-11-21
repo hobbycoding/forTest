@@ -77,12 +77,17 @@
   <!-- added part.2 start-->
   <target name="mccabe.ant.copy">
       <mkdir dir="${WORK_HOME}"/>
-      <mkdir dir="${WORK_HOME}/build"/>
-      <copy todir="${WORK_HOME}/build" verbose="yes">
+      <mkdir dir="${WORK_HOME}/temp"/>
+      <mkdir dir="${WORK_HOME}/origin"/>
+      <copy todir="${WORK_HOME}/temp" verbose="yes">
+          <fileset dir="${build.temp.dir}"/>
+      </copy>
+      <copy todir="${WORK_HOME}/origin" verbose="yes">
           <fileset dir="${build.temp.dir}"/>
       </copy>
       <propertyfile file="${mccabe.property}">
           <entry  key="programName" value="${hudson.job.name}"/>
+          <entry  key="srcDir" value="${WORK_HOME}/origin"/>
       </propertyfile>
   </target>
 
@@ -113,7 +118,7 @@
 
   <target name="mccabe.build.report">
       <propertyfile file="${mccabe.property}">
-          <entry  key="subjobs" value="[src/mainjava/com/testmine/sample/signup]"/>
+          <entry  key="subjobs" value="[src/main/java/com/testmine/sample/signup]"/>
       </propertyfile>
       <java jar="${mccabe.helper.jar}" fork="true">
           <arg line="${mccabe.property} report"/>
