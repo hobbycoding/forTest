@@ -1,79 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="build_deploy" default="deploy">
-  <!-- McCabe property -->
-  <!-- added part.0 start-->
-  <property name="mccabe.helper.jar" value="/usr/mccabe/helper/MccabeHelper-1.0.jar"/>
-  <property name="mccabe.property" value="/usr/mccabe/helper/mccabe.properties" />
-  <property file="${mccabe.property}" />
-  <!-- added part.0 end-->
-  <!-- project properties -->
-  <!-- Source (hudson workspace) -->
-  <property name="hudson.job.name" value="TEST-deploy_kv3_app_sfa-TEST-COVERAGE" />
-  <property name="hudson.job.workspace" value="/svn/devon/ciserv/hudson/jobs/${hudson.job.name}/workspace" />
-  <!-- repository 배포 타킷 설정정보 -->
-  <property name="repository.root" value="/svn/devon/repository/build_testsvr" />
-  <property name="repository.app.sfa" value="${repository.root}/kv3_app_sfa" />
-  <!-- build temp dir -->
-  <property name="build.temp.dir" value="${repository.root}/build_temp/${hudson.job.name}" />
-  <!-- Target 설정 -->
-  <property name="target.root" value="/sorc/was" />
-  <!-- 영업지원(sfa) app path -->
-  <property name="target.app.sfa.root" value="${target.root}/kv3_app_sfa" />
-  <property name="target.app.sfa.class" value="${target.app.sfa.root}/web/WEB-INF/classes" />
-  <!--<property name="target.app.sfa.query" value="${target.app.sfa.root}/web/WEB-INF/devonhome" />-->
-  <!-- DevOn 영업지원 AP 서버 정보  -->
-  <property name="target.sfa.ap.svr.ip" value="10.32.65.28" />
-  <property name="target.sfa.ap.svr.user" value="devon" />
-  <property name="target.sfa.ap.svr.pw" value="Dev%08on" />
-  <!-- 영업지원 DB 서버 정보  -->
-  <!-- <property name="target.sfa.bat.svr.ip" value="10.32.65.29" />
-  <property name="target.sfa.bat.svr.user" value="devon" />
-  <property name="target.sfa.bat.svr.pw" value="Dev%08on" />-->
-  <!-- jeus lib폴더 -->
-  <property name="jeus.base.dir" value="/jeus/jeus" />
-  <property name="jeus.lib.dir" value="${jeus.base.dir}/lib/systemapps" />
-  <property name="jeus.system.lib.dir" value="${jeus.base.dir}/lib/system" />
-  <property name="jeus.datasource.lib.dir" value="${jeus.base.dir}/lib/datasource" />
-  <!-- ${jsp.repository} 에는 web 이 checkout 되어 있어야 함. (나중에 source update 와 통합할 것) -->
-  <property name="jsp.repository" value="${repository.root}/web" />
-  <property name="jsp.target.dir" value="${target.app.sfa.root}/web" />
-  <!-- Compiler Setting -->
-  <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-  <!--################################################################################################# -->
-  <!-- 0.copy 폴더 생성 -->
-  <target name="init">
-    <mkdir dir="${build.temp.dir}" />
-    <mkdir dir="${build.temp.dir}/src" />
-    <!--<mkdir dir="${build.temp.dir}/devonhome" />-->
-    <mkdir dir="${build.temp.dir}/web/WEB-INF/classes" />
-  </target>
-  <target name="get.now.time">
-    <exec executable="/bin/ksh" failonerror="true" dir="." outputproperty="now.time">
-      <arg value="-c" />
-      <arg value="date +%Y%m%d_%H%M%S" />
-    </exec>
-  </target>
-  <!-- 1.jobs에서 수정된 소스를 copy -->
-  <target name="jobs.copy">
-    <copy todir="${build.temp.dir}" verbose="yes">
-      <fileset dir="${hudson.job.workspace}">
-        <exclude name="**/.svn/**/*.*" />
-        <exclude name="src/kv3/test/**/*.java" />
-        <!--<include name="web/WEB-INF/devonhome/xmlquery/**/*.xml" />-->
-        <!--<include name="src/**/*.java" />-->
-        <include name="src/kv3/qaa/**/*.java" />
-        <!--<include name="web/**/*.jsp" />-->
-        <!--include name="web/WEB-INF/web.xml" /-->
-        <modified />
-      </fileset>
-    </copy>
-    <!-- added part.1 start-->
-    <antcall target="mccabe.ant.copy"/>
-    <antcall target="mccabe.build.inst"/>
-    <!-- added part.1 end-->
-  </target>
+1 <?xml version="1.0" encoding="UTF-8"?>
+2 <project name="build_deploy" default="deploy">
+3   <!-- McCabe property -->
+4   <!-- added part.0 start-->
+5   <property name="mccabe.helper.jar" value="/usr/mccabe/helper/MccabeHelper-1.0.jar"/>
+6   <property name="mccabe.property" value="/usr/mccabe/helper/mccabe.properties" />
+7   <property file="${mccabe.property}" />
+8   <!-- added part.0 end-->
+9   <!-- project properties -->
+10   <!-- Source (hudson workspace) -->
+11   <property name="hudson.job.name" value="TEST-deploy_kv3_app_sfa-TEST-COVERAGE" />
+12   <property name="hudson.job.workspace" value="/svn/devon/ciserv/hudson/jobs/${hudson.job.name}/workspace" />
+13   <!-- repository 배포 타킷 설정정보 -->
+14   <property name="repository.root" value="/svn/devon/repository/build_testsvr" />
+15   <property name="repository.app.sfa" value="${repository.root}/kv3_app_sfa" />
+16   <!-- build temp dir -->
+17   <property name="build.temp.dir" value="${repository.root}/build_temp/${hudson.job.name}" />
+18   <!-- Target 설정 -->
+19   <property name="target.root" value="/sorc/was" />
+20   <!-- 영업지원(sfa) app path -->
+21   <property name="target.app.sfa.root" value="${target.root}/kv3_app_sfa" />
+22   <property name="target.app.sfa.class" value="${target.app.sfa.root}/web/WEB-INF/classes" />
+23   <!--<property name="target.app.sfa.query" value="${target.app.sfa.root}/web/WEB-INF/devonhome" />-->
+24   <!-- DevOn 영업지원 AP 서버 정보  -->
+25   <property name="target.sfa.ap.svr.ip" value="10.32.65.28" />
+26   <property name="target.sfa.ap.svr.user" value="devon" />
+27   <property name="target.sfa.ap.svr.pw" value="Dev%08on" />
+28   <!-- 영업지원 DB 서버 정보  -->
+29   <!-- <property name="target.sfa.bat.svr.ip" value="10.32.65.29" />
+30   <property name="target.sfa.bat.svr.user" value="devon" />
+31   <property name="target.sfa.bat.svr.pw" value="Dev%08on" />-->
+32   <!-- jeus lib폴더 -->
+33   <property name="jeus.base.dir" value="/jeus/jeus" />
+34   <property name="jeus.lib.dir" value="${jeus.base.dir}/lib/systemapps" />
+35   <property name="jeus.system.lib.dir" value="${jeus.base.dir}/lib/system" />
+36   <property name="jeus.datasource.lib.dir" value="${jeus.base.dir}/lib/datasource" />
+37   <!-- ${jsp.repository} 에는 web 이 checkout 되어 있어야 함. (나중에 source update 와 통합할 것) -->
+38   <property name="jsp.repository" value="${repository.root}/web" />
+39   <property name="jsp.target.dir" value="${target.app.sfa.root}/web" />
+40   <!-- Compiler Setting -->
+41   <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+42   <!--################################################################################################# -->
+43   <!-- 0.copy 폴더 생성 -->
+44   <target name="init">
+45     <mkdir dir="${build.temp.dir}" />
+46     <mkdir dir="${build.temp.dir}/src" />
+47     <!--<mkdir dir="${build.temp.dir}/devonhome" />-->
+48     <mkdir dir="${build.temp.dir}/web/WEB-INF/classes" />
+49   </target>
+50   <target name="get.now.time">
+51     <exec executable="/bin/ksh" failonerror="true" dir="." outputproperty="now.time">
+52       <arg value="-c" />
+53       <arg value="date +%Y%m%d_%H%M%S" />
+54     </exec>
+55   </target>
+56   <!-- 1.jobs에서 수정된 소스를 copy -->
+57   <target name="jobs.copy">
+58     <copy todir="${build.temp.dir}" verbose="yes">
+59       <fileset dir="${hudson.job.workspace}">
+60         <exclude name="**/.svn/**/*.*" />
+61         <exclude name="src/kv3/test/**/*.java" />
+62         <!--<include name="web/WEB-INF/devonhome/xmlquery/**/*.xml" />-->
+63         <!--<include name="src/**/*.java" />-->
+64         <include name="src/kv3/qaa/**/*.java" />
+65         <!--<include name="web/**/*.jsp" />-->
+66         <!--include name="web/WEB-INF/web.xml" /-->
+67         <modified />
+68       </fileset>
+69     </copy>
+70     <!-- added part.1 start-->
+71     <antcall target="mccabe.ant.copy"/>
+72     <antcall target="mccabe.build.inst"/>
+73     <!-- added part.1 end-->
+74   </target>
+75
 
+76
 
+<<<<<<< HEAD
   <!-- added part.2 start-->
   <target name="mccabe.ant.copy">
       <mkdir dir="${WORK_HOME}"/>
@@ -90,32 +93,50 @@
           <entry  key="srcDir" value="${WORK_HOME}/origin"/>
       </propertyfile>
   </target>
+=======
+77   <!-- added part.2 start-->
+78   <target name="mccabe.ant.copy">
+79       <mkdir dir="${WORK_HOME}"/>
+80       <mkdir dir="${WORK_HOME}/build"/>
+81       <copy todir="${WORK_HOME}/build" verbose="yes">
+82           <fileset dir="${build.temp.dir}"/>
+83       </copy>
+84       <propertyfile file="${mccabe.property}">
+85           <entry  key="programName" value="${hudson.job.name}"/>
+86       </propertyfile>
+87   </target>
+88
+>>>>>>> 59c801d2aee9d096d28ad9cb709f24e374c94a6c
 
-  <target name="mccabe.build.inst">
-      <echo message="${mccabe.helper.jar} inst"/>
-      <java jar="${mccabe.helper.jar}" fork="true">
-          <arg line="${mccabe.property} inst"/>
-      </java>
-  </target>
+89   <target name="mccabe.build.inst">
+90       <echo message="${mccabe.helper.jar} inst"/>
+91       <java jar="${mccabe.helper.jar}" fork="true">
+92           <arg line="${mccabe.property} inst"/>
+93       </java>
+94   </target>
+95
 
-  <target name="mccabe.fix.pathvec">
-    <java jar="${mccabe.helper.jar}" fork="true">
-      <arg line="${mccabe.property} pathvec"/>
-    </java>
-    <move todir="${WORK_HOME}/projects/${programName}/src/com" includeEmptyDirs="yes" verbose="true">
-        <fileset dir="${WORK_HOME}/projects/${programName}/com" >
-            <include name="**/*" />
-        </fileset>
-    </move>
-  </target>
+96   <target name="mccabe.fix.pathvec">
+97     <java jar="${mccabe.helper.jar}" fork="true">
+98       <arg line="${mccabe.property} pathvec"/>
+99     </java>
+100     <move todir="${WORK_HOME}/projects/${programName}/src/com" includeEmptyDirs="yes" verbose="true">
+101         <fileset dir="${WORK_HOME}/projects/${programName}/com" >
+102             <include name="**/*" />
+103         </fileset>
+104     </move>
+105   </target>
+106
 
-  <target name="mccabe.download">
-      <java jar="${mccabe.helper.jar}" fork="true">
-          <arg line="${mccabe.property} sftp"/>
-      </java>
-      <antcall target="mccabe.build.report"/>
-  </target>
+107   <target name="mccabe.download">
+108       <java jar="${mccabe.helper.jar}" fork="true">
+109           <arg line="${mccabe.property} sftp"/>
+110       </java>
+111       <antcall target="mccabe.build.report"/>
+112   </target>
+113
 
+<<<<<<< HEAD
   <target name="mccabe.build.report">
       <propertyfile file="${mccabe.property}">
           <entry  key="subjobs" value="[src/main/java/com/testmine/sample/signup]"/>
@@ -125,79 +146,92 @@
       </java>
       <antcall target="mccabe.addedPackageName"/>
   </target>
+=======
+114   <target name="mccabe.build.report">
+115       <propertyfile file="${mccabe.property}">
+116           <entry  key="subjobs" value="[src/mainjava/com/testmine/sample/signup]"/>
+117       </propertyfile>
+118       <java jar="${mccabe.helper.jar}" fork="true">
+119           <arg line="${mccabe.property} report"/>
+120       </java>
+121       <antcall target="mccabe.addedPackageName"/>
+122   </target>
+123
+>>>>>>> 59c801d2aee9d096d28ad9cb709f24e374c94a6c
 
-  <target name="mccabe.addedPackageName">
-      <java jar="${mccabe.helper.jar}" fork="true">
-          <arg line="${mccabe.property} PackageAdd"/>
-      </java>
-      <propertyfile file="${mccabe.property}">
-          <entry  key="subjobs" value=""/>
-      </propertyfile>
-  </target>
+124   <target name="mccabe.addedPackageName">
+125       <java jar="${mccabe.helper.jar}" fork="true">
+126           <arg line="${mccabe.property} PackageAdd"/>
+127       </java>
+128       <propertyfile file="${mccabe.property}">
+129           <entry  key="subjobs" value=""/>
+130       </propertyfile>
+131   </target>
+132
 
-  <!-- added part.2 end-->
-  <!-- 2.compile 및 배포 -->
-  <target name="compile">
-    <javac srcdir="${WORK_HOME}/projects/test/src" destdir="${WORK_HOME}/projects/test/web/WEB-INF/classes" source="1.8" target="1.8" failonerror="false" includeantruntime="false" encoding="utf8" debug="on">
-      <compilerarg compiler="org.eclipse.jdt.core.JDTCompilerAdapter" line="-g -proceedOnError -time -warn:none -Xemacs -Xlint:unchecked" />
-      <classpath>
-        <pathelement path="${repository.app.sfa}/web/WEB-INF/classes" />
-        <fileset dir="${repository.app.sfa}/web/WEB-INF/lib">
-          <include name="*.jar" />
-        </fileset>
-        <fileset dir="${jeus.lib.dir}">
-          <include name="*.jar" />
-        </fileset>
-        <fileset dir="${jeus.system.lib.dir}">
-          <include name="*.jar" />
-        </fileset>
-        <fileset dir="${jeus.datasource.lib.dir}">
-          <include name="*.jar" />
-        </fileset>
-      </classpath>
-    </javac>
-  </target>
-  <!-- 3.배포 -->
-  <target name="app.sfa.deploy">
-    <echo message="[ app.sfa.deploy Start ]" />
-    <scp todir="${target.sfa.ap.svr.user}:${target.sfa.ap.svr.pw}@${target.sfa.ap.svr.ip}:${target.app.sfa.root}" verbose="true" trust="true">
-      <fileset dir="${WORK_HOME}/projects/test/">
-        <exclude name="**/*.java" />
-        <include name="**/*.class" />
-        <!--<include name="**/*.jsp" />-->
-        <!--<include name="web/WEB-INF/devonhome/xmlquery/**/*.xml" />-->
-        <!--include name="web/WEB-INF/web.xml" /-->
-      </fileset>
-    </scp>
-    <echo message="[ app.sfa.deploy End ]" />
-  </target>
-  <target name="bat.sfa.deploy">
-    <echo message="[ bat.sfa.deploy Start ]" />
-    <scp todir="${target.sfa.bat.svr.user}:${target.sfa.bat.svr.pw}@${target.sfa.bat.svr.ip}:${target.app.sfa.root}" verbose="true" trust="true">
-      <fileset dir="${build.temp.dir}">
-        <exclude name="**/*.java" />
-        <include name="**/*.class" />
-        <include name="**/*.jsp" />
-        <include name="web/WEB-INF/devonhome/xmlquery/**/*.xml" />
-        <!--include name="web/WEB-INF/web.xml" /-->
-      </fileset>
-    </scp>
-    <echo message="[ bat.sfa.deploy End ]" />
-  </target>
-  <!-- 4.repository copy -->
-  <target name="repository.copy">
-    <copy todir="${repository.app.sfa}" verbose="yes">
-      <fileset dir="${build.temp.dir}">
-      </fileset>
-    </copy>
-  </target>
-  <!-- 5. 폴더 삭제 -->
-  <!-- <target name="clean">
-  <delete dir="${build.temp.dir}" />
-</target> -->
-<target name="deploy" depends="init, jobs.copy, compile, sfa.deploy, repository.copy">
-</target>
-<!--<target name="sfa.deploy" depends="bat.sfa.deploy, app.sfa.deploy">-->
-<target name="sfa.deploy" depends="app.sfa.deploy">
-</target>
-</project>
+133   <!-- added part.2 end-->
+134   <!-- 2.compile 및 배포 -->
+135   <target name="compile">
+136     <javac srcdir="${WORK_HOME}/projects/test/src" destdir="${WORK_HOME}/projects/test/web/WEB-INF/classes" source="1.8" target="1.8" failonerror="false" includeantruntime="false" encoding="utf8" debug="on">
+137       <compilerarg compiler="org.eclipse.jdt.core.JDTCompilerAdapter" line="-g -proceedOnError -time -warn:none -Xemacs -Xlint:unchecked" />
+138       <classpath>
+139         <pathelement path="${repository.app.sfa}/web/WEB-INF/classes" />
+140         <fileset dir="${repository.app.sfa}/web/WEB-INF/lib">
+141           <include name="*.jar" />
+142         </fileset>
+143         <fileset dir="${jeus.lib.dir}">
+144           <include name="*.jar" />
+145         </fileset>
+146         <fileset dir="${jeus.system.lib.dir}">
+147           <include name="*.jar" />
+148         </fileset>
+149         <fileset dir="${jeus.datasource.lib.dir}">
+150           <include name="*.jar" />
+151         </fileset>
+152       </classpath>
+153     </javac>
+154   </target>
+155   <!-- 3.배포 -->
+156   <target name="app.sfa.deploy">
+157     <echo message="[ app.sfa.deploy Start ]" />
+158     <scp todir="${target.sfa.ap.svr.user}:${target.sfa.ap.svr.pw}@${target.sfa.ap.svr.ip}:${target.app.sfa.root}" verbose="true" trust="true">
+159       <fileset dir="${WORK_HOME}/projects/test/">
+160         <exclude name="**/*.java" />
+161         <include name="**/*.class" />
+162         <!--<include name="**/*.jsp" />-->
+163         <!--<include name="web/WEB-INF/devonhome/xmlquery/**/*.xml" />-->
+164         <!--include name="web/WEB-INF/web.xml" /-->
+165       </fileset>
+166     </scp>
+167     <echo message="[ app.sfa.deploy End ]" />
+168   </target>
+169   <target name="bat.sfa.deploy">
+170     <echo message="[ bat.sfa.deploy Start ]" />
+171     <scp todir="${target.sfa.bat.svr.user}:${target.sfa.bat.svr.pw}@${target.sfa.bat.svr.ip}:${target.app.sfa.root}" verbose="true" trust="true">
+172       <fileset dir="${build.temp.dir}">
+173         <exclude name="**/*.java" />
+174         <include name="**/*.class" />
+175         <include name="**/*.jsp" />
+176         <include name="web/WEB-INF/devonhome/xmlquery/**/*.xml" />
+177         <!--include name="web/WEB-INF/web.xml" /-->
+178       </fileset>
+179     </scp>
+180     <echo message="[ bat.sfa.deploy End ]" />
+181   </target>
+182   <!-- 4.repository copy -->
+183   <target name="repository.copy">
+184     <copy todir="${repository.app.sfa}" verbose="yes">
+185       <fileset dir="${build.temp.dir}">
+186       </fileset>
+187     </copy>
+188   </target>
+189   <!-- 5. 폴더 삭제 -->
+190   <!-- <target name="clean">
+191   <delete dir="${build.temp.dir}" />
+192 </target> -->
+193 <target name="deploy" depends="init, jobs.copy, compile, sfa.deploy, repository.copy">
+194 </target>
+195 <!--<target name="sfa.deploy" depends="bat.sfa.deploy, app.sfa.deploy">-->
+196 <target name="sfa.deploy" depends="app.sfa.deploy">
+197 </target>
+198 </project>
