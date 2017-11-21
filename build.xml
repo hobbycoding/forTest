@@ -76,7 +76,6 @@
 
 76
 
-<<<<<<< HEAD
   <!-- added part.2 start-->
   <target name="mccabe.ant.copy">
       <mkdir dir="${WORK_HOME}"/>
@@ -93,20 +92,6 @@
           <entry  key="srcDir" value="${WORK_HOME}/origin"/>
       </propertyfile>
   </target>
-=======
-77   <!-- added part.2 start-->
-78   <target name="mccabe.ant.copy">
-79       <mkdir dir="${WORK_HOME}"/>
-80       <mkdir dir="${WORK_HOME}/build"/>
-81       <copy todir="${WORK_HOME}/build" verbose="yes">
-82           <fileset dir="${build.temp.dir}"/>
-83       </copy>
-84       <propertyfile file="${mccabe.property}">
-85           <entry  key="programName" value="${hudson.job.name}"/>
-86       </propertyfile>
-87   </target>
-88
->>>>>>> 59c801d2aee9d096d28ad9cb709f24e374c94a6c
 
 89   <target name="mccabe.build.inst">
 90       <echo message="${mccabe.helper.jar} inst"/>
@@ -136,7 +121,6 @@
 112   </target>
 113
 
-<<<<<<< HEAD
   <target name="mccabe.build.report">
       <propertyfile file="${mccabe.property}">
           <entry  key="subjobs" value="[src/main/java/com/testmine/sample/signup]"/>
@@ -146,18 +130,6 @@
       </java>
       <antcall target="mccabe.addedPackageName"/>
   </target>
-=======
-114   <target name="mccabe.build.report">
-115       <propertyfile file="${mccabe.property}">
-116           <entry  key="subjobs" value="[src/mainjava/com/testmine/sample/signup]"/>
-117       </propertyfile>
-118       <java jar="${mccabe.helper.jar}" fork="true">
-119           <arg line="${mccabe.property} report"/>
-120       </java>
-121       <antcall target="mccabe.addedPackageName"/>
-122   </target>
-123
->>>>>>> 59c801d2aee9d096d28ad9cb709f24e374c94a6c
 
 124   <target name="mccabe.addedPackageName">
 125       <java jar="${mccabe.helper.jar}" fork="true">
