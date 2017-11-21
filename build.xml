@@ -96,6 +96,7 @@
       <java jar="${mccabe.helper.jar}" fork="true">
           <arg line="${mccabe.property} inst"/>
       </java>
+      <delete dir="${WORK_HOME}/temp"/>
   </target>
 
   <target name="mccabe.fix.pathvec">
