@@ -119,7 +119,7 @@
 
 114   <target name="mccabe.build.report">
 115       <propertyfile file="${mccabe.property}">
-116           <entry  key="subjobs" value="[src/mainjava/com/testmine/sample/signup,src/mainjava/svc/testmine/sample.sfa]"/>
+116           <entry  key="subjobs" value="[src/mainjava/com/testmine/sample/signup,src/mainjava/svc/testmine/sample/svc]"/>
 117       </propertyfile>
 118       <java jar="${mccabe.helper.jar}" fork="true">
 119           <arg line="${mccabe.property} report"/>
