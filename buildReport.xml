@@ -16,7 +16,7 @@
         </java>
         <antcall target="mccabe.addedPackageName"/>
         <antcall target="mccabe.insertDB"/>
-        <delete file="${WORK_HOME}/projects/${programName}/fileList.json"/>
+        <!-- <delete file="${WORK_HOME}/projects/${programName}/fileList.json"/> -->
     </target>
 
     <target name="mccabe.addedPackageName">
