@@ -15,11 +15,20 @@
             <arg line="${mccabe.property} report"/>
         </java>
         <antcall target="mccabe.addedPackageName"/>
+        <antcall target="mccabe.insertDB"/>
+        <delete file="${WORK_HOME}/projects/${programName}/fileList.json"/>
     </target>
 
     <target name="mccabe.addedPackageName">
         <java jar="${mccabe.helper.jar}" fork="true">
             <arg line="${mccabe.property} PackageAdd"/>
         </java>
+    </target>
+
+    <target name="mccabe.insertDB">
+        <java jar="${mccabe.helper.jar}" fork="true">
+            <arg line="${mccabe.property} insertDB"/>
+        </java>
+
     </target>
 </project>

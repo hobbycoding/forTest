@@ -2,7 +2,7 @@
 <project name="build_deploy" default="deploy">
   <!-- McCabe property -->
   <!-- added part.0 start-->
-  <property name="mccabe.helper.jar" value="/usr/mccabe/helper/MccabeHelper-1.0.jar"/>
+  <property name="mccabe.helper.jar" value="/usr/mccabe/helper/MccabeHelper-1.1-SNAPSHOT.jar"/>
   <property name="mccabe.property" value="/usr/mccabe/helper/mccabe.properties" />
   <property file="${mccabe.property}" />
   <!-- added part.0 end-->
