@@ -88,6 +88,7 @@
       <propertyfile file="${mccabe.property}">
           <entry  key="programName" value="${hudson.job.name}"/>
           <entry  key="srcDir" value="${WORK_HOME}/origin"/>
+          <entry  key="tempDir" value="${WORK_HOME}/temp"/>
       </propertyfile>
   </target>
 
