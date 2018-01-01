@@ -27,10 +27,6 @@
         <java jar="${mccabe.helper.jar}" fork="true">
             <arg line="${mccabe.property} PackageAdd"/>
         </java>
-        <propertyfile file="${mccabe.property}">
-            <entry key="subjobs" value=""/>
-            <entry key="selected" value=""/>
-        </propertyfile>
     </target>
 
     <target name="mccabe.insertDB">
