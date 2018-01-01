@@ -37,6 +37,9 @@
         <java jar="${mccabe.helper.jar}" fork="true">
             <arg line="${mccabe.property} insertDB"/>
         </java>
-
+        <propertyfile file="${mccabe.property}">
+            <entry key="subjobs" value=""/>
+            <entry key="selected" value=""/>
+        </propertyfile>
     </target>
 </project>
