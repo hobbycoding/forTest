@@ -121,7 +121,7 @@
   <target name="mccabe.build.report">
       <propertyfile file="${mccabe.property}">
           <entry  key="subjobs" value="[src/main/java/com/testmine, src/main/java/com/mccabe]"/>
-          <entry  key="selected" value="[&quot;src_main_java_com_mccabe&quot;]"/>
+          <!-- <entry  key="selected" value="[&quot;src_main_java_com_mccabe&quot;]"/> -->
       </propertyfile>
       <java jar="${mccabe.helper.jar}" fork="true">
           <arg line="${mccabe.property} report"/>
