@@ -15,7 +15,7 @@
             <entry key="subjobs" value="[src/main/java/com/testmine, src/main/java/com/mccabe]"/>
             <entry key="selected" value="[&quot;src_main_java_com_mccabe&quot;]"/>
             <!-- Do not need it, but use it when you need it. -->
-            <!-- <entry key="TRACEFILE_HOME" value="/svn/mccabe/test/projects"/> -->
+            <entry key="TRACEFILE_HOME" value="/svn/mccabe/test/projects_origin"/>
             <!-- <entry key="PROJECT_DIR" value="/svn/mccabe/test/tracefiles"/> -->
             <!-- <entry key="REPORT_DIR" value="/svn/mccabe/test/report"/> -->
 
