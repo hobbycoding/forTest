@@ -14,6 +14,11 @@
         <propertyfile file="${mccabe.property}">
             <entry key="subjobs" value="[src/main/java/com/testmine, src/main/java/com/mccabe]"/>
             <entry key="selected" value="[&quot;src_main_java_com_mccabe&quot;]"/>
+            <!-- Do not need it, but use it when you need it. -->
+            <!-- <entry key="TRACEFILE_HOME" value="/svn/mccabe/test/projects"/> -->
+            <!-- <entry key="PROJECT_DIR" value="/svn/mccabe/test/tracefiles"/> -->
+            <!-- <entry key="REPORT_DIR" value="/svn/mccabe/test/report"/> -->
+
         </propertyfile>
         <java jar="${mccabe.helper.jar}" fork="true">
             <arg line="${mccabe.property} report"/>
@@ -33,8 +38,12 @@
             <arg line="${mccabe.property} insertDB"/>
         </java>
         <propertyfile file="${mccabe.property}">
+            <!-- After using value, you have to initialize. -->
             <entry key="subjobs" value=""/>
             <entry key="selected" value=""/>
+            <!-- <entry key="TRACEFILE_HOME" value=""/> -->
+            <!-- <entry key="PROJECT_DIR" value=""/> -->
+            <!-- <entry key="REPORT_DIR" value=""/> -->
         </propertyfile>
     </target>
 </project>
