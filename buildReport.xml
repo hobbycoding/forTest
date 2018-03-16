@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="euc-kr"?>
 <project name="makeReport" default="mccabe.download">
-    <property name="mccabe.helper.jar" value="/usr/mccabe/helper/MccabeHelper-1.1-SNAPSHOT.jar"/>
+    <property name="mccabe.helper.jar" value="/usr/mccabe/helper/MccabeHelper-1.1.3-SNAPSHOT.jar"/>
     <property name="mccabe.property" value="/usr/mccabe/helper/mccabe.properties" />
     <property file="${mccabe.property}" />
 
