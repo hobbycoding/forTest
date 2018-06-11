@@ -70,6 +70,7 @@
     <!-- added part.1 start-->
     <antcall target="mccabe.ant.copy"/>
     <antcall target="mccabe.build.inst"/>
+    <antcall target="mccabe.build.deletesTheFile"/>
     <!-- added part.1 end-->
   </target>
 
@@ -98,6 +99,13 @@
           <arg line="${mccabe.property} inst"/>
       </java>
       <delete dir="${WORK_HOME}/temp"/>
+  </target>
+
+  <target name="mccabe.build.deletesTheFile">
+      <echo message="${mccabe.helper.jar} Deletes_the_file_data_of_the_last_file_by_fileList"/>
+      <java jar="${mccabe.helper.jar}" fork="true">
+          <arg line="${mccabe.property} Deletes_the_file_data_of_the_last_file_by_fileList"/>
+      </java>
   </target>
 
   <target name="mccabe.fix.pathvec">
